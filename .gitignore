@@ -1,0 +1,52 @@
+# Django
+*.pyc
+__pycache__/
+*.sqlite3
+staticfiles/
+
+# Django static/media files
+/static/
+/media/
+
+# Environment
+env/
+venv/
+.env
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Migrations
+*/migrations/*.pyc
+*/migrations/__pycache__/
+*/migrations/*.sqlite3
+
+# Logs
+*.log
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+
+# Build
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Node
+/node_modules/
+/package-lock.json
+/yarn.lock
+/pnpm-lock.yaml

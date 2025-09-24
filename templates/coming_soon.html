@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<main class="bg-secondary">
+    <section class="text-light text-center d-flex flex-column justify-content-center align-items-center vh-100">
+        <h2 class="display-3 fw-bold mb-3">¡Próximamente!</h2>
+        <p class="fs-4 mb-4">Aún no está disponible<br>Vuelve pronto</p>
+    </section>
+    <section>
+        <img src="{% static 'media/img/happy_cat.gif' %}" class="img-fluid mx-auto d-block" style="max-width: 128px;">
+    </section>
+</main>
+{% include "footer.html" %}
+{% endblock %}
