@@ -10,7 +10,7 @@ SECRET_KEY = getenv("DJANGO_SECRET_KEY")
 
 DEBUG = getenv("PRODUCTION", "True") != "True"
 
-ALLOWED_HOSTS = ["localhost"] if DEBUG else [
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"] if DEBUG else [
     i.strip() for i in getenv("HOSTS", "*").split(",") if i.strip()
 ]
 

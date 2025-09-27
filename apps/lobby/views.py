@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
-from project.views import coming_soon
+from utils.vars import RENDER_CTX
 
 def index(request):
-    return coming_soon(request)
+    RENDER_CTX["head"]["title"] += "| Inicio"
+    return render(request, "index.html", RENDER_CTX)
