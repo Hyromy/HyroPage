@@ -1,9 +1,12 @@
 RENDER_CTX = {
     "head": {
         "title": "Hyromy ",
-        "styles": [],
+        "styles": [
+            "main",
+        ],
         "scripts": [
-            "theme"
+            "theme",
+            "footer",
         ]
     }
 }

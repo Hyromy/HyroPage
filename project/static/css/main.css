@@ -1,0 +1,18 @@
+#footer-cursor {
+    display: inline-block;
+    width: 1px;
+    height: 1.4em;
+    background: linear-gradient(to bottom, transparent 10%, #ffffff 10%, #ffffff 90%, transparent 90%);
+    margin-left: 1px;
+    animation: cursor-pulse 1.5s infinite;
+    vertical-align: text-bottom;
+}
+            
+@keyframes cursor-pulse {
+    0%, 50% { 
+        opacity: 1; 
+    }
+    51%, 100% { 
+        opacity: 0; 
+    }
+}
