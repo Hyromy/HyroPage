@@ -1,0 +1,38 @@
+#reposArt {
+    position: relative;
+    z-index: 0;
+}
+
+#reposArt::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow:
+        inset 3rem 0 2rem -1rem var(--bs-body-bg),
+        inset -3rem 0 2rem -1rem var(--bs-body-bg);
+    pointer-events: none;
+    z-index: 1;
+}
+
+#reposArt > * {
+    position: relative;
+    z-index: 0;
+}
+
+.carousel-inner {
+    display: flex;
+    padding: 1rem;
+}
+
+.carousel-item {
+    flex: 0 0 320px;
+    margin-right: 0;
+    display: block;
+}
+
+.card {
+    margin: 0 .5rem;
+}

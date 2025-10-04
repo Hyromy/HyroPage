@@ -8,7 +8,7 @@ const getRandomEmojis = () => {
     const emojis = ["♥️", "🍜", "🖥️", "🧠", "🤖", "🐈", "🐶", "👾", "🐳", "🐘", "🐍", "🐧", "🎁", "🎧", "⛏️", "🗿", "🌽"]
 
     let coinFlip = 1
-    while (Math.random() < 0.5 && coinFlip < emojis.length) coinFlip += 1
+    while ((Math.random() > (4 / 5)) && coinFlip < emojis.length) coinFlip += 1
 
     const outEmojis = []
     for (let i = 0; i < coinFlip; i++) {

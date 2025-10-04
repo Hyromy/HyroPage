@@ -1,13 +1,13 @@
 {% load static %}
 
-<nav class="navbar bg-body-tertiary navbar-expand-sm px-2">
+<nav class="navbar bg-body-tertiary navbar-expand-sm px-2 sticky-top">
     <div class="container-fluid d-flex justify-content-between">
         <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <i class="bi bi-list fs-1"></i>
         </button>
-        <a class="navbar-brand d-flex align-items-center m-0" href="#">
+        <a class="navbar-brand d-flex align-items-center m-0" href="{% url "index" %}">
             <img src={% static "media/img/favicon-48.ico" %} width="48" class="d-inline-block align-text-top rounded">
-            <span class="d-none d-sm-inline ps-2">Hyromy</span>
+            <span class="d-none d-sm-inline ps-2">Inicio</span>
         </a>
         <div class="offcanvas offcanvas-start ps-2" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
@@ -16,14 +16,17 @@
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Experiencia</a>
+                    <li class="nav-item d-sm-none">
+                        <a class="nav-link" href="{% url "index" %}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Proyectos</a>
+                        <a class="nav-link" href="{% url "experience" %}">Experiencia</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sobre mí</a>
+                        <a class="nav-link" href="{% url "projects" %}">Proyectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "about_me" %}">Sobre mí</a>
                     </li>
                 </ul>
             </div>

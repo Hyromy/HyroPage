@@ -16,13 +16,6 @@ window.addEventListener("DOMContentLoaded", () => {
     currentTheme = !currentTheme
     changeTheme()
 
-    for (const item of [
-        document.body,
-        document.body.querySelector("nav"),
-    ]) {
-        item.style.transition = "background-color 0.25s ease"
-    }
-
     document.getElementById("themeBtn").addEventListener("click", () => {
         changeTheme()
     })

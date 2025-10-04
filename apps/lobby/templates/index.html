@@ -1,7 +1,144 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 {% include "nav.html" %}
-<h1>Welcome to the Lobby</h1>
-<p>This is the main lobby page.</p>
+<main>
+    <section class="container-xxl pt-4" id="face">
+        <div class="row">
+            <div class="col-12 col-sm-6 text-center justify-content-center align-items-center d-flex flex-column">
+                <h1 class="d-inline-block" style="font-size: 3rem;">Joel González</h1>
+                <img src={% static "media/img/favicon-48.ico" %} style="width: 100%; max-width: 256px" class="d-block d-sm-none rounded mx-auto my-3" alt="Logo">
+                <h3>Desarrollador de software</h3>
+                <p style="max-width: 300px;">
+                    Desarrollador curioso y apasionado por ofrecer soluciones longevas y de calidad.
+                </p>
+                <button class="btn btn-outline-secondary" disabled>
+                    <i class="bi bi-download me-1"></i>
+                    Descargar CV
+                </button>
+            </div>
+            <div class="col-12 col-sm-6 d-none d-sm-flex align-items-center">
+                <img src={% static "media/img/favicon-48.ico" %} style="width: 100%; max-width: 384px" class="rounded mx-auto" alt="Logo">
+            </div>
+        </div>
+    </section>
+    <section class="container-xxl pt-4" id="experience">
+        <header>
+            <h2>Experiencia</h2>
+        </header>
+        <article>
+            <h4>Formación Profesional</h4>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <h5>Diseñador UX/UI, Analista de sistemas, y Desarrollador Jr</h5>
+                    <p class="mb-0">VLIM TIC</p>
+                    <p class="mb-0">Enero 2025 - Diciembre 2025</p>
+                    <p class="mb-0 mt-1 text-muted">Desarrollo de software administrativo con microservicios en moleculer.js</p>
+                </div>
+                <div class="col-12 col-md-6 pt-4 pt-md-0">
+                    <h5>Desarrollado de App Educativa 4.0</h5>
+                    <p class="mb-0">Universidad Tecnológica de Tecámac</p>
+                    <p class="mb-0">Septiembre 2024 - Diciembre 2024</p>
+                    <p class="mb-0 mt-1 text-muted">Desarrollo de una aplicación móvil nativa para disminuir el rezago escolar en alumnos de nuevo ingreso.</p>
+                </div>
+            </div>
+        </article>
+        <hr class="my-4">
+        <article>
+            <h4>Formación académica</h4>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <h5>Ingeniería en Desarrollo y Gestión de Software</h5>
+                    <p class="mb-0">Universidad Tecnológica de Tecámac</p>
+                    <p class="mb-0">Enero 2025 - Agosto 2026</p>
+                </div>
+                <div class="col-12 col-md-6 pt-4 pt-md-0">
+                    <h5>TSU en TI área Desarrollo de Software Multiplataforma</h5>
+                    <p class="mb-0">Universidad Tecnológica de Tecámac</p>
+                    <p class="mb-0">Enero 2023 - Diciembre 2024</p>
+                </div>
+            </div>
+        </article>
+    </section>
+    <section class="container-xxl pt-4" id="project">
+        <header>
+            <h2>Proyectos</h2>
+        </header>
+        <article>
+            {% if repos %}
+                <div id="reposArt">
+                    <div id="reposCarousel" class="carousel">
+                        <div class="carousel-inner gap-2">
+                            {% for repo in repos %}
+                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                    <div class="card text-center h-100">
+                                        <div class="card-header">
+                                            {{ repo.name }}
+                                        </div>
+                                        <div class="card-body d-flex flex-column">
+                                            <p class="card-text flex-grow-1 d-flex justify-content-center align-items-center">{{ repo.description|default:"Sin descripción" }}</p>
+                                            <a href="{{ repo.html_url }}" target="_blank" class="btn btn-primary">Ver en GitHub</a>
+                                        </div>
+                                        <div class="card-footer text-body-secondary">
+                                            <span class="badge text-bg-secondary">{{ repo.language }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#reposCarousel" data-bs-slide="prev">
+                            <div class="bg-dark bg-opacity-50 rounded p-2">
+                                <i class="bi bi-chevron-left text-white"></i>
+                            </div>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#reposCarousel" data-bs-slide="next">
+                            <div class="bg-dark bg-opacity-50 rounded p-2">
+                                <i class="bi bi-chevron-right text-white"></i>
+                            </div>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            {% endif %}
+        </article>
+        <article>
+            <h4> Tecnologías y herramientas</h4>
+            <div class="d-inline-flex flex-wrap gap-3 justify-content-center">
+                {% for tech_type, techs in technologies.items %}
+                    <div class="border border-secondary border-2 rounded-4 p-3 text-center justify-content-center">
+                        <h5 class="mb-4">{{ tech_type }}</h5>
+                            <div class="d-grid gap-2" style="grid-template-columns: repeat(3, max-content);">
+                            {% for tech in techs %}
+                                <div class="p-2 rounded-4" style="background-color: #f8f8f8">
+                                    <img src={% static "/icon/"|add:tech.img %} alt="{{ tech.name }}" style="width: 48px;">
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}                
+            </div>
+        </article>
+    </section>
+    <section class="container-xxl pt-4" id="about_me">
+        <header>
+            <h2>Sobre mí</h2>
+        </header>
+        <article>
+            <p>
+                Soy un <strong>estudiante</strong> minucioso de <strong>ingeniería</strong> en desarrollo y gestión de <strong>software</strong>.
+                Me apasiona la experimentación, la <strong>mejora continua</strong>, y los detalles que <strong>sumen o aporten valor y distinción</strong>.
+                Casi todos mis proyectos empiezan como un experimento o como una <strong>"nueva versión" de una idea</strong>.
+                En equipo me gusta <strong>guiar y ayudar a los demás</strong>, así como <strong>proponer soluciones</strong> al escenario o situación que se nos presente.
+            </p>
+            <p>
+                Cuando no estoy programando me gusta jugar videojuegos, ver anime o series y estudiar temas que no solo tengan que ver con la informática.
+                Uno de mis géneros musicales preferidos es el City-pop y J-pop, ocasionalmente escucho bachata (aunque no se bailar bien).
+                También me gusta pasar tiempo con mis amigos, discutir algún tema, jugar algo, pasar el rato, divagar, o gastarnos bromas sutiles.
+                Me gusta mucho el aportar y contribuir con alguien o algo para lograr un bien común.
+            </p>
+        </article>
+    </section>
+</main>
 {% include "footer.html" %}
 {% endblock %}
