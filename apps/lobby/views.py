@@ -24,7 +24,7 @@ def index(request):
             "img": tech["img"]
         })
 
-    ctx["repos"] = get_public_repos("Hyromy")
+    ctx["repos"] = [] #get_public_repos("Hyromy")
 
     return render(request, "index.html", ctx)
 

@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'apps.lobby',
+    'apps.bridge',
 ]
 
 MIDDLEWARE = [
