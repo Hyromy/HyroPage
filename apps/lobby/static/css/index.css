@@ -36,3 +36,23 @@
 .card {
     margin: 0 .5rem;
 }
+
+.lang-badge {
+    width: fit-content;
+}
+
+.tech-group {
+    width: 242px;
+}
+
+.tech-badge {
+    background-color: #f8f8f8;
+    position: relative;
+    transition: all 0.3s ease;
+    top: 0;
+}
+
+.tech-badge:hover {
+    box-shadow: 0 4px 8px rgba(128, 128, 128, 0.5);
+    transform: translateY(-4px);
+}

@@ -15,6 +15,17 @@
     <link rel="stylesheet" href="{% static 'css/devicon.min.css' %}">
 
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script>
+        window.loadToolTips = () => {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        }
+        window.addEventListener('DOMContentLoaded', (event) => {
+            window.loadToolTips()
+        })
+    </script>
     <script src="{% static 'js/jquery.min.js' %}"></script>
 
     {% for style in head.styles %}
@@ -22,7 +33,7 @@
     {% endfor %}
     
     {% for script in head.scripts %}
-        <script src="{% static "js/"|add:script|add:".js" %}"></script>
+        <script type="module" src="{% static "js/"|add:script|add:".js" %}"></script>
     {% endfor %}
 </head>
 <body>
