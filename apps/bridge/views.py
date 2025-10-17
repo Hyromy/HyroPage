@@ -1,55 +1,58 @@
 from django.core.cache import cache
 from django.http import JsonResponse
 
-import asyncio
-import httpx
+from asyncio import gather
+from httpx import AsyncClient, Limits
 
 from os import getenv
 
-async def get_repos(request):
+from utils.vars import REPOS_BLACKLIST
+
+async def get_repos(request, username):
     if request.method != "GET":
         return JsonResponse({"error": "Method not allowed"}, status = 405)
     
     cached = cache.get("github_repos")
     if cached:
-        print("Serving GitHub repos from cache")
         return JsonResponse(cached, safe = False)
 
-    headers = {"Authorization": f"Bearer {getenv('GITHUB_TOKEN')}"}
+    token = getenv("GH_TOKEN", None)
+    headers = {"Authorization": f"Bearer {token}"} if token else {}
+    params = {"per_page": 100, "sort": "updated"}
+    if token:
+        params["affiliation"] = "owner,collaborator,organization_member"
+    url = "https://api.github.com/user/repos" if token else f"https://api.github.com/users/{username}/repos"
 
-    async with httpx.AsyncClient(
+    async with AsyncClient(
         timeout = 10.0,
-        limits = httpx.Limits(
+        limits = Limits(
             max_connections = 10,
             max_keepalive_connections = 5
         )
     ) as client:
-        response = await client.get(
-            "https://api.github.com/user/repos",
-            headers = headers,
-            params = {
-                "affiliation": "owner,collaborator,organization_member",
-                "per_page": 100,
-                "sort": "updated",
-            }
-        )
-        response.raise_for_status()
+        try:
+            response = await client.get(url, headers = headers, params = params)
+            response.raise_for_status()
+        except:
+            return JsonResponse({"error": response.text}, status = response.status_code)
+
         raw_data = response.json()
-        blacklist = set()
         data = [i for i in raw_data if 
-            (i["owner"]["login"] == "Hyromy" and not i["private"])
-            or (i["owner"]["login"] != "Hyromy" and i["name"] not in blacklist)
+            (
+                (i["owner"]["login"] == username and not i["private"])
+                or (i["owner"]["login"] != username and i["name"])
+            ) and i["name"] not in REPOS_BLACKLIST
         ]
 
         async def fetch_langs(url):
             try:
-                r = await client.get(url, headers=headers)
+                r = await client.get(url, headers = headers)
                 r.raise_for_status()
                 return r.json()
             except:
                 return {}
 
-        langs_results = await asyncio.gather(
+        langs_results = await gather(
             *(fetch_langs(repo["languages_url"]) for repo in data),
             return_exceptions=True
         )

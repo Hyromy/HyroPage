@@ -12,7 +12,7 @@ RENDER_CTX = {
     }
 }
 
-TECHNOLOGIES = [
+TECHNOLOGIES = (
     {
         "name": "Android studio",
         "img": "androidstudio-original.svg",
@@ -103,4 +103,6 @@ TECHNOLOGIES = [
         "img": "xamarin-original.svg",
         "type": "Frameworks"
     }
-]
+)
+
+REPOS_BLACKLIST = {}

@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:17
+    container_name: db_container
+    environment:
+      POSTGRES_PASSWORD: postgres
+
+    networks:
+      - this_lan
+
+  app:
+    build: .
+    container_name: app_container
+    ports:
+      - "8000:8000"
+
+    environment:
+      DJANGO_SECRET_KEY: your_secret_key
+      PG_DB: postgres
+      PG_USER: postgres
+      PG_PASS: postgres
+      PG_HOST: db
+      PG_PORT: 5432
+
+    depends_on:
+      - db
+
+    networks:
+      - this_lan
+
+networks:
+  this_lan:

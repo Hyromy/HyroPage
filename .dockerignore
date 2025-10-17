@@ -52,7 +52,8 @@ dist/
 /pnpm-lock.yaml
 
 # Docker
-.github/*
+.git/
+.github/
 .gitignore
 LICENSE
 package.json
