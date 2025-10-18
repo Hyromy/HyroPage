@@ -6,9 +6,9 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = getenv("DJANGO_SECRET_KEY")
+SECRET_KEY = getenv("DJANGO_SECRET_KEY", "secret")
 
-DEBUG = getenv("PRODUCTION", "True") != "True"
+DEBUG = getenv("PRODUCTION", "False") != "True"
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"] if DEBUG else [
     i.strip() for i in getenv("HOSTS", "*").split(",") if i.strip()

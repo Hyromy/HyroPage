@@ -1,10 +1,6 @@
 from django.shortcuts import render
 
-from utils.funcs import (
-    render_ctx,
-    get_public_repos,
-    get_contrib_repos,
-)
+from utils.funcs import render_ctx
 from utils.vars import TECHNOLOGIES
 
 def index(request):
@@ -23,8 +19,6 @@ def index(request):
             "name": tech["name"],
             "img": tech["img"]
         })
-
-    ctx["repos"] = [] #get_public_repos("Hyromy")
 
     return render(request, "index.html", ctx)
 
