@@ -53,8 +53,10 @@ dist/
 
 # Docker
 .git/
+.vscode/
 .github/
 .gitignore
+docker-compose.yml
 LICENSE
 package.json
 *.md

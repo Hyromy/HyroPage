@@ -1,0 +1,45 @@
+services:
+  db:
+    image: postgres:17
+    container_name: hyro_db
+    
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "postgres"
+
+    volumes:
+      - hyro_db_data:/var/lib/postgresql/data
+
+    networks:
+      - hyro_page_network
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: hyro_page_app
+    
+    ports:
+      - "8000:8000"
+
+    environment:
+      PRODUCTION: "True"
+      PG_HOST: db
+
+    networks:
+      - hyro_page_network
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  hyro_db_data:
+
+networks:
+  hyro_page_network:

@@ -89,9 +89,14 @@ py manage.py runserver 7001     # port 7001
 
 ### Docker
 
-Por último puedes construir una imagen y contenedor con el [Dockerfile](./Dockerfile).
+Puedes construir una imagen y contenedor con el [Dockerfile](./Dockerfile).
 ```sh
 docker build -t app_image .
 
 docker run --name app_container -p 8000:8000 app_image
+```
+
+Por último puedes ejecutar un entorno pre-producción sin ninguna [variable de entorno](#variables-de-entrono).
+```sh
+docker compose up
 ```
