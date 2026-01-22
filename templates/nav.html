@@ -6,7 +6,10 @@
             <i class="bi bi-list fs-1"></i>
         </button>
         <a class="navbar-brand d-flex align-items-center m-0" href="{% url "index" %}">
+            <i class="bi bi-house fs-1"></i>
+            {% comment %}
             <img src={% static "media/img/favicon-48.ico" %} width="48" class="d-inline-block align-text-top rounded">
+            {% endcomment %}
             <span class="d-none d-sm-inline ps-2">Inicio</span>
         </a>
         <div class="offcanvas offcanvas-start ps-2" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -19,6 +22,7 @@
                     <li class="nav-item d-sm-none">
                         <a class="nav-link" href="{% url "index" %}">Inicio</a>
                     </li>
+                    {% comment %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url "experience" %}">Experiencia</a>
                     </li>
@@ -28,6 +32,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url "about_me" %}">Sobre mí</a>
                     </li>
+                    {% endcomment %}
                 </ul>
             </div>
         </div>

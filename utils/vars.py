@@ -102,6 +102,11 @@ TECHNOLOGIES = (
         "name": "Xamarin",
         "img": "xamarin-original.svg",
         "type": "Frameworks"
+    },
+    {
+        "name": "React",
+        "img": "react-original.svg",
+        "type": "Frameworks"
     }
 )
 
